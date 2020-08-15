@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,13 @@ public class TitleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!binding.nameTv.getText().toString().isEmpty()) {
-                    addLogoTriviaFragment(binding.nameTv.getText().toString());
+                    //addLogoTriviaFragment(binding.nameTv.getText().toString());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("one", binding.nameTv.getText().toString());
+
+                    Navigation.findNavController(binding.getRoot())
+                            .navigate(R.id.action_titleFragment_to_logoTriviaFragment);
+
                 } else {
                     Toast.makeText(getContext(), "Debes escribir tu nombre", Toast.LENGTH_SHORT).show();
                 }
